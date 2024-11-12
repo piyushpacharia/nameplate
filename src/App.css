@@ -20,7 +20,7 @@ body {
   justify-content: center;
   align-items: center;
   background-position: center;
-  background-image: url("https://img.staticmb.com/mbcontent/images/crop/uploads/2024/9/Main-Door-Design-Ideas-for-Your-Home_0_1200.jpg");
+  background-image: url("./assets/homebanner.jpeg");
 }
 
 .overlay {
@@ -29,7 +29,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #00000080;
+  background-color: #00000050;
   /* Semi-transparent black */
   z-index: 1;
   /* Keeps the overlay between background and content */

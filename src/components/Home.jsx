@@ -5,6 +5,8 @@ import Parallax, { Layer } from "react-parallax-scroll";
 import { GrGallery } from 'react-icons/gr';
 import Gallery from './Gallery';
 import Features from './Features';
+import HomeCollections from './HomeCollections';
+import Testimonials from './Testimonials';
 
 export default function Home() {
   return (
@@ -16,7 +18,9 @@ export default function Home() {
         </Layer>
       </Parallax>
       <Features />
+      <HomeCollections />
       <Gallery />
+      <Testimonials />
     </div>
   );
 }

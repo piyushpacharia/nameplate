@@ -2,12 +2,25 @@ import React, { useState, useEffect } from "react";
 import { CiShoppingCart, CiUser } from "react-icons/ci";
 import { FaBars } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
+import Signin from "./Auth/Signin";
+import Signup from "./Auth/Signup";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);  
   const [isVisible, setIsVisible] = useState(true); 
   const [lastScrollY, setLastScrollY] = useState(0); 
   const [activeLink, setActiveLink] = useState(""); 
+  const [signinModalVisible, setSigninModalVisible] = useState(false);
+  const [signupModalVisible, setSignupModalVisible] = useState(false);
+
+  const toggleSigninModal = () => setSigninModalVisible(!signinModalVisible);
+  const toggleSignupModal = () => setSignupModalVisible(!signupModalVisible);
+
+  // Function to close Signin and open Signup
+  const handleSignUpClick = () => {
+    setSigninModalVisible(false); // Close Signin Modal
+    setSignupModalVisible(true);  // Open Signup Modal
+  };
 
   const toggleNavbar = () => setIsOpen(!isOpen);
 
@@ -27,10 +40,11 @@ export default function Navbar() {
   };
 
   return (
+    <>
     <nav
       className={`${
         isVisible ? "translate-y-0" : "-translate-y-full"
-      } sticky top-0 left-0 w-full bg-[#6c7d50] py-2 text-white border-gray-200 transition-transform duration-300 ease-in-out z-50`}
+      } sticky top-0 left-0 w-full bg-white py-2 text-black border-gray-200 transition-transform duration-300 ease-in-out z-50`}
     >
       <div className="md:px-10 flex flex-wrap items-center justify-between mx-auto py-2">
         <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
@@ -64,10 +78,10 @@ export default function Navbar() {
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className={`block py-2 font-normal text-white text-base px-3 rounded ${
+                  className={`block py-2 font-normal text-black text-base px-3 rounded ${
                     activeLink === link.href
-                      ? "nav-active text-transparent bg-clip-text"
-                      : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#33411d]"
+                      ? "nav-active text-blue-800 bg-clip-text"
+                      : "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-600"
                   }`}
                   onClick={() => handleLinkClick(link.href)}
                 >
@@ -77,11 +91,26 @@ export default function Navbar() {
               </li>
             ))}
             
-            <li><CiUser className="font-bold text-xl"/></li>
-            <li><CiShoppingCart className="font-bold text-xl"/></li>
+            <li><CiUser className="font-bold text-xl cursor-pointer" onClick={toggleSigninModal}/></li>
+            <li><CiShoppingCart className="font-bold text-xl cursor-pointer"/></li>
           </ul>
         </div>
       </div>
     </nav>
+    {signinModalVisible && (
+        <Signin
+          handleSignInModel={toggleSigninModal}
+          handleSignUpModel={handleSignUpClick} // Pass the updated function
+        />
+      )}
+
+      {/* Signup Modal */}
+      {signupModalVisible && (
+        <Signup
+          handleSignUpModel={toggleSignupModal}
+          handleSignInModel={toggleSigninModal}
+        />
+      )}
+    </>
   );
 }
