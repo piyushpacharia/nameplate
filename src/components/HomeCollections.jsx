@@ -3,6 +3,7 @@ import image1 from '../assets/homeCollection/image1.webp'
 import image2 from '../assets/homeCollection/image2.webp'
 import image3 from '../assets/homeCollection/image3.jpg'
 import { FaArrowRight } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 export default function HomeCollections() {
   return (
@@ -34,9 +35,9 @@ export default function HomeCollections() {
           </h1>
         </div>
       </div>
-      <p className='text-center flex items-center gap-2 pt-10 cursor-pointer' data-aos="fade-up" data-aos-duration="1200" data-aos-once>
+      <Link to="/collection/home" className='text-center flex items-center gap-2 pt-10 cursor-pointer' data-aos="fade-up" data-aos-duration="1200" data-aos-once>
         See More Collections <FaArrowRight />
-      </p>
+      </Link>
     </div>
   )
 }

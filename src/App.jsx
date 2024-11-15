@@ -14,6 +14,7 @@ import ShippingPolicy from './components/Policies/ShippingPolicy';
 import About from './components/About';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Collection from './components/Collection';
 
 export default function App() {
   useEffect(() => {
@@ -25,6 +26,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/collection/:category" element={<Collection />} />
         {/* policies */}
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
